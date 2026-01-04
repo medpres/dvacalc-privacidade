@@ -1,103 +1,697 @@
-# Política de Privacidade - DVAcalc
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prontuário Eletrônico - Demonstração MedPres</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-**Última atualização:** 26 de dezembro de 2024
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            color: #1a1a2e;
+        }
 
-## 1. Introdução
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a5f7a 0%, #0d3b4c 100%);
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-Esta Política de Privacidade descreve como o aplicativo **DVAcalc** ("nós", "nosso" ou "aplicativo") coleta, usa e protege as informações dos usuários ("você" ou "usuário").
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
 
-O DVAcalc é uma calculadora de drogas vasoativas e sedação desenvolvida como ferramenta de apoio à decisão clínica para profissionais de saúde.
+        .hospital-logo {
+            width: 48px;
+            height: 48px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
 
-## 2. Informações que Coletamos
+        .hospital-info h1 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
 
-### 2.1 Informações que NÃO coletamos
+        .hospital-info p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
 
-O DVAcalc foi projetado com privacidade em mente. **Não coletamos, armazenamos ou transmitimos:**
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 0.9rem;
+        }
 
-- Dados pessoais de identificação
-- Informações de pacientes
-- Dados de saúde
-- Localização
-- Contatos
-- Fotos ou arquivos
-- Histórico de uso ou cálculos realizados
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-### 2.2 Dados armazenados localmente
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-O aplicativo pode armazenar localmente no seu dispositivo:
+        /* Demo Banner */
+        .demo-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
 
-- Peso do paciente inserido (apenas durante a sessão de uso)
-- Preferências de configuração do aplicativo
+        .demo-banner span {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+        }
 
-Esses dados permanecem exclusivamente no seu dispositivo e são apagados quando você fecha o aplicativo ou limpa os dados do app.
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 24px;
+        }
 
-## 3. Uso das Informações
+        /* Sidebar - Patient Info */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-Como não coletamos dados pessoais, não há informações a serem utilizadas, compartilhadas ou vendidas a terceiros.
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
 
-## 4. Compartilhamento de Dados
+        .card-header {
+            background: #f8f9fa;
+            padding: 14px 18px;
+            border-bottom: 1px solid #e9ecef;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #495057;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-**Não compartilhamos nenhum dado com terceiros**, pois não coletamos informações dos usuários.
+        .card-body {
+            padding: 18px;
+        }
 
-## 5. Segurança
+        .patient-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #e9ecef;
+        }
 
-Embora não coletemos dados, implementamos as seguintes medidas de segurança:
+        .patient-avatar {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
 
-- O aplicativo funciona 100% offline
-- Nenhum dado é transmitido pela internet
-- Não há servidores externos envolvidos
-- Os cálculos são realizados localmente no dispositivo
+        .patient-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
 
-## 6. Serviços de Terceiros
+        .patient-id {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 2px;
+        }
 
-O DVAcalc **não utiliza** serviços de terceiros que coletam dados, como:
+        .patient-details {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-- Google Analytics
-- Facebook SDK
-- Ferramentas de rastreamento
-- Redes de publicidade
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
 
-## 7. Público-Alvo
+        .detail-label {
+            color: #6c757d;
+        }
 
-Este aplicativo é destinado exclusivamente a **profissionais de saúde** (médicos, enfermeiros e outros profissionais habilitados) para uso como ferramenta de apoio em ambiente clínico.
+        .detail-value {
+            font-weight: 500;
+            color: #1a1a2e;
+        }
 
-**Não é destinado ao público geral ou para automedicação.**
+        .vital-signs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
 
-## 8. Isenção de Responsabilidade Médica
+        .vital-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
 
-⚠️ **AVISO IMPORTANTE:**
+        .vital-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a5f7a;
+        }
 
-- O DVAcalc é uma **ferramenta de apoio à decisão clínica**
-- **Não substitui** o julgamento clínico do profissional de saúde
-- Sempre **confira os cálculos** e consulte protocolos institucionais
-- O **médico é responsável** pela prescrição final
-- Os desenvolvedores **não se responsabilizam** por erros de dosagem ou eventos adversos decorrentes do uso do aplicativo
+        .vital-label {
+            font-size: 0.75rem;
+            color: #6c757d;
+            margin-top: 4px;
+        }
 
-## 9. Direitos do Usuário
+        .vital-item.alert {
+            background: #fff3cd;
+        }
 
-Você tem o direito de:
+        .vital-item.alert .vital-value {
+            color: #856404;
+        }
 
-- Usar o aplicativo sem fornecer dados pessoais
-- Desinstalar o aplicativo a qualquer momento
-- Entrar em contato conosco para dúvidas sobre privacidade
+        /* Main Content - SOAP */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-## 10. Alterações nesta Política
+        .soap-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
 
-Podemos atualizar esta Política de Privacidade periodicamente. Recomendamos que você revise esta página regularmente. Alterações significativas serão notificadas através de atualização do aplicativo.
+        .soap-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-## 11. Legislação Aplicável
+        .soap-letter {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+        }
 
-Esta Política de Privacidade é regida pelas leis da República Federativa do Brasil, incluindo a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).
+        .soap-s .soap-letter { background: #4361ee; }
+        .soap-o .soap-letter { background: #7209b7; }
+        .soap-a .soap-letter { background: #f72585; }
+        .soap-p .soap-letter { background: #4cc9f0; }
 
-## 12. Contato
+        .soap-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #1a1a2e;
+        }
 
-Se você tiver dúvidas sobre esta Política de Privacidade ou sobre o aplicativo, entre em contato:
+        .soap-subtitle {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
 
-**Desenvolvedor:** MEDPRES SISTEMA DE SOFTWARE LTDA  
-**CNPJ:** 63.900.551/0001-21  
-**E-mail:** contato@medpres.app  
-**Endereço:** R Gomes Freire, 581, APT 1001 - Centro, Rio Grande/RS - CEP 96.200-470
+        .soap-body {
+            padding: 20px;
+        }
 
----
+        .soap-body textarea {
+            width: 100%;
+            min-height: 120px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 14px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            resize: vertical;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
 
-© 2024 DVAcalc - MEDPRES SISTEMA DE SOFTWARE LTDA. Todos os direitos reservados.
+        .soap-body textarea:focus {
+            outline: none;
+            border-color: #1a5f7a;
+            box-shadow: 0 0 0 3px rgba(26, 95, 122, 0.1);
+        }
+
+        .soap-body textarea::placeholder {
+            color: #adb5bd;
+        }
+
+        /* Prescription Section */
+        .prescription-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            overflow: hidden;
+            border: 2px solid #10b981;
+        }
+
+        .prescription-header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+        }
+
+        .prescription-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .prescription-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .prescription-subtitle {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .prescription-body {
+            padding: 20px;
+        }
+
+        .prescription-body textarea {
+            width: 100%;
+            min-height: 200px;
+            border: 2px dashed #10b981;
+            border-radius: 8px;
+            padding: 14px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            resize: vertical;
+            background: #f0fdf4;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .prescription-body textarea:focus {
+            outline: none;
+            border-style: solid;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .prescription-body textarea::placeholder {
+            color: #6ee7b7;
+        }
+
+        .prescription-hint {
+            margin-top: 12px;
+            padding: 12px;
+            background: #ecfdf5;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #065f46;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #495057;
+            border: 1px solid #dee2e6;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1a5f7a 0%, #0d3b4c 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(26, 95, 122, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Timestamp */
+        .timestamp {
+            text-align: center;
+            padding: 16px;
+            color: #6c757d;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .header-right {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .main-container {
+                padding: 16px;
+            }
+
+            .vital-signs {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        ⚠️ AMBIENTE DE DEMONSTRAÇÃO — PACIENTE FICTÍCIO — <span>Apenas para demonstração do MedPres</span>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="hospital-logo">🏥</div>
+            <div class="hospital-info">
+                <h1>UPA 24h Demonstração</h1>
+                <p>Sistema de Prontuário Eletrônico</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <div>📅 04/01/2026 - 14:32</div>
+            <div class="user-info">
+                <div class="user-avatar">👨‍⚕️</div>
+                <div>
+                    <div style="font-weight: 600;">Dr. Demonstração</div>
+                    <div style="font-size: 0.8rem; opacity: 0.8;">CRM 00000-UF</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar - Patient Info -->
+        <aside class="sidebar">
+            <!-- Patient Card -->
+            <div class="card">
+                <div class="card-header">
+                    👤 Dados do Paciente
+                </div>
+                <div class="card-body">
+                    <div class="patient-header">
+                        <div class="patient-avatar">JF</div>
+                        <div>
+                            <div class="patient-name">João Fictício da Silva</div>
+                            <div class="patient-id">Prontuário: #DEMO-2026-001</div>
+                        </div>
+                    </div>
+                    <div class="patient-details">
+                        <div class="detail-row">
+                            <span class="detail-label">CPF:</span>
+                            <span class="detail-value">000.000.000-00</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Nascimento:</span>
+                            <span class="detail-value">15/03/1985 (40 anos)</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Sexo:</span>
+                            <span class="detail-value">Masculino</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Peso:</span>
+                            <span class="detail-value">75 kg</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Altura:</span>
+                            <span class="detail-value">1,72 m</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Alergias:</span>
+                            <span class="detail-value" style="color: #dc3545;">Dipirona</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Convênio:</span>
+                            <span class="detail-value">SUS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vital Signs Card -->
+            <div class="card">
+                <div class="card-header">
+                    💓 Sinais Vitais
+                </div>
+                <div class="card-body">
+                    <div class="vital-signs">
+                        <div class="vital-item alert">
+                            <div class="vital-value">38.2°C</div>
+                            <div class="vital-label">Temperatura</div>
+                        </div>
+                        <div class="vital-item">
+                            <div class="vital-value">110/70</div>
+                            <div class="vital-label">PA (mmHg)</div>
+                        </div>
+                        <div class="vital-item">
+                            <div class="vital-value">88</div>
+                            <div class="vital-label">FC (bpm)</div>
+                        </div>
+                        <div class="vital-item">
+                            <div class="vital-value">18</div>
+                            <div class="vital-label">FR (irpm)</div>
+                        </div>
+                        <div class="vital-item">
+                            <div class="vital-value">97%</div>
+                            <div class="vital-label">SpO2</div>
+                        </div>
+                        <div class="vital-item">
+                            <div class="vital-value">96</div>
+                            <div class="vital-label">Glicemia</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classification Card -->
+            <div class="card">
+                <div class="card-header">
+                    🏷️ Classificação de Risco
+                </div>
+                <div class="card-body">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 48px; height: 48px; background: #ffc107; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">⚠️</div>
+                        <div>
+                            <div style="font-weight: 600; color: #856404;">AMARELO</div>
+                            <div style="font-size: 0.85rem; color: #6c757d;">Urgência - Pouco Urgente</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e9ecef; font-size: 0.85rem; color: #6c757d;">
+                        Queixa: Febre e dor no corpo há 2 dias
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content - SOAP -->
+        <main class="main-content">
+            <!-- S - Subjetivo -->
+            <section class="soap-section soap-s">
+                <div class="soap-header">
+                    <div class="soap-letter">S</div>
+                    <div>
+                        <div class="soap-title">Subjetivo (Anamnese)</div>
+                        <div class="soap-subtitle">Queixas e história relatada pelo paciente</div>
+                    </div>
+                </div>
+                <div class="soap-body">
+                    <textarea placeholder="Cole aqui a anamnese do MedPres..."></textarea>
+                </div>
+            </section>
+
+            <!-- O - Objetivo -->
+            <section class="soap-section soap-o">
+                <div class="soap-header">
+                    <div class="soap-letter">O</div>
+                    <div>
+                        <div class="soap-title">Objetivo (Exame Físico)</div>
+                        <div class="soap-subtitle">Achados do exame físico e exames complementares</div>
+                    </div>
+                </div>
+                <div class="soap-body">
+                    <textarea placeholder="Cole aqui o exame físico do MedPres..."></textarea>
+                </div>
+            </section>
+
+            <!-- A - Avaliação -->
+            <section class="soap-section soap-a">
+                <div class="soap-header">
+                    <div class="soap-letter">A</div>
+                    <div>
+                        <div class="soap-title">Avaliação (Diagnóstico)</div>
+                        <div class="soap-subtitle">Hipóteses diagnósticas e CID-10</div>
+                    </div>
+                </div>
+                <div class="soap-body">
+                    <textarea placeholder="Cole aqui o diagnóstico / CID-10..."></textarea>
+                </div>
+            </section>
+
+            <!-- P - Plano -->
+            <section class="soap-section soap-p">
+                <div class="soap-header">
+                    <div class="soap-letter">P</div>
+                    <div>
+                        <div class="soap-title">Plano (Conduta)</div>
+                        <div class="soap-subtitle">Prescrição interna e conduta</div>
+                    </div>
+                </div>
+                <div class="soap-body">
+                    <textarea placeholder="Cole aqui a prescrição interna do MedPres..."></textarea>
+                </div>
+            </section>
+
+            <!-- Receita Domiciliar -->
+            <section class="prescription-section">
+                <div class="prescription-header">
+                    <div class="prescription-icon">📋</div>
+                    <div>
+                        <div class="prescription-title">Receita Domiciliar</div>
+                        <div class="prescription-subtitle">Prescrição para uso em casa - Cole a receita do MedPres aqui</div>
+                    </div>
+                </div>
+                <div class="prescription-body">
+                    <textarea placeholder="Cole aqui a receita domiciliar do MedPres..."></textarea>
+                    <div class="prescription-hint">
+                        💡 <strong>Dica:</strong> No MedPres, clique em "Copiar Prescrição" e cole diretamente neste campo.
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-secondary">🖨️ Imprimir Receita</button>
+                    <button class="btn btn-success">✅ Salvar Atendimento</button>
+                </div>
+            </section>
+
+            <!-- Timestamp -->
+            <div class="timestamp">
+                ⚠️ Este é um ambiente de demonstração com dados fictícios para apresentação do MedPres.<br>
+                Nenhum dado real de paciente está sendo utilizado.
+            </div>
+        </main>
+    </div>
+</body>
+</html>
